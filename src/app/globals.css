@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-lemon: "Lemon", sans-serif; 
+  --color-primary: #C14600;
+  --color-secondary: #FF9D23;
+  --color-lower: #E5D0AC;
+  --color-background: #FEF9E1;
+  --foreground: #000000;
+}
+
+body {
+  background: var(--color-background);
+  font-family: var(--font-lemon);
+}
+
