@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
         search: ''
       },
     ],
+    remotePatterns: [
+      {
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      }
+    ]
   },
 };
 

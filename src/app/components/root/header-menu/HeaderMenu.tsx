@@ -1,4 +1,4 @@
-import { MENU } from "@/app/core/constants/menu";
+import { MENU } from "@/core/constants/menu";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,6 +27,4 @@ export default function HeaderMenu() {
 
         </div>
     )
-
-
 }
