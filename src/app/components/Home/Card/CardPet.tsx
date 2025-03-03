@@ -1,4 +1,5 @@
 'use client'
+
 import Image from "next/image";
 import Tag from "../../shared/Tag/Tag";
 
@@ -6,21 +7,24 @@ interface CardPetProps {
     name: string;
     description: string;
     tags: string[];
-    imgSrc: string
+    image: string
 }
-export default function CardPet({ name, description, tags, imgSrc }: CardPetProps) {
+
+export default function CardPet({ name, description, tags, image }: CardPetProps) {
+
     return (
         <div className="border border-secondary rounded-2xl flex flex-col gap-2 max-w-80">
             <Image
-                src={imgSrc}
+                src={image}
                 alt={name}
                 width={400}
-                height={400}
-                className="rounded-t-2xl"
+                height={200}
+                objectFit="cover"
+                className="rounded-t-2xl max-h-52 object-cover"
             />
 
-            <div className="p-4">
-                <span>Moacir</span>
+            <div className="p-4 grow">
+                <span>{name}</span>
                 <p className="text-secondary text-wrap max-w-96 text-[12px]">
                     {description}
                 </p>

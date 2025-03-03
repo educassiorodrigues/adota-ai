@@ -45,7 +45,6 @@ export default function FilterForm() {
                     label="Buscar"
                     variant="primary"
                 />
-
             </div>
         </form>
     )
