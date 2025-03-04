@@ -1,11 +1,11 @@
-import { HTMLAttributes } from "react";
+import { SelectHTMLAttributes } from "react";
 
 interface SelectOptionsProps {
     value: string;
     label: string;
 }
 
-interface SelectProps extends HTMLAttributes<HTMLSelectElement>{
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement>{
     label: string;
     options: SelectOptionsProps[];
 }

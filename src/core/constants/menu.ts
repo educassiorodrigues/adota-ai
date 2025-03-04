@@ -10,7 +10,7 @@ export const MENU: MenuItem[] = [
     },
     {
         label: "Cadastro PET",
-        href: "/cadastro-pet"
+        href: "/cadastro"
     },
     {
         label: "Quem Somos",
