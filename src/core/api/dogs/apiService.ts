@@ -1,3 +1,4 @@
+import axios from "axios";
 import { httpInstance } from "../httpInstance/httpInstance";
 import { IAdicionarCachorroRequest } from "../interfaces/requests/IAdicionarCachorroRequest";
 import { IListarCachorrosResponse } from "../interfaces/responses/IListarCachorrosResponse";
@@ -15,7 +16,7 @@ export async function listarCachorros(isAdopted?: boolean) : Promise<IListarCach
 }
 
 export async function adicionarCachorro(dog: IAdicionarCachorroRequest) : Promise<number> {
-    return await http.post("/dogs", dog);
+    return await axios.post("http://localhost:3000/api/adicionar", dog);
 }
 
 export async function buscarCachorro(id: string) {

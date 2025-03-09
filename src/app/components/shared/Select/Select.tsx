@@ -18,7 +18,7 @@ export default function Select({label, options, ...props}: SelectProps) {
             <select className="border rounded border-secondary bg-white h-12 px-4 py-2" name="type" id="Tipo" {...props}>
                 <option value="">Selecione</option>
                 {options.map((option) => (
-                    <option key={option.value} value={option.value}>{option.value}</option>
+                    <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
             </select>
         </div>
