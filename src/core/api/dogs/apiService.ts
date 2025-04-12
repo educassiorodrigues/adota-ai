@@ -1,11 +1,12 @@
+
 import { httpInstance } from "../httpInstance/httpInstance";
 import { IAdicionarCachorroRequest } from "../interfaces/requests/IAdicionarCachorroRequest";
 import { IListarCachorrosResponse } from "../interfaces/responses/IListarCachorrosResponse";
 
 const http = httpInstance()
 
-export async function listarCachorros(isAdopted?: boolean) : Promise<IListarCachorrosResponse[]> {
-    const response = await http.get("/dogs", {
+export async function listarCachorros(isAdopted?: boolean): Promise<IListarCachorrosResponse[]> {
+    const response = await http.get("api/listar", {
         params: {
             isAdopted: isAdopted
         }
@@ -14,8 +15,13 @@ export async function listarCachorros(isAdopted?: boolean) : Promise<IListarCach
     return response.data
 }
 
-export async function adicionarCachorro(dog: IAdicionarCachorroRequest) : Promise<number> {
-    return await http.post("/dogs", dog);
+export async function adicionarCachorro(dog: IAdicionarCachorroRequest): Promise<number> {
+    try {
+        return await http.post("api/adicionar", dog);
+    } catch (e) {
+        throw e;
+    }
+
 }
 
 export async function buscarCachorro(id: string) {
