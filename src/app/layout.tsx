@@ -27,8 +27,6 @@ export default function RootLayout({
             <HeaderMenu />
           </header>
 
-
-
         <main>
           {children}
         </main>

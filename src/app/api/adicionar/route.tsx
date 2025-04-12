@@ -1,14 +1,16 @@
-import { PetMongoSchema, PetSchema } from "@/core/types/TPet";
+import { PetSchema } from "@/core/types/TPet";
 import mongoose from "mongoose";
 const mongoURI = 'mongodb://admin:admin123@localhost:27017/adotaai?authSource=admin'; // Substitua se necessário
 
 export async function POST(request: Request) {
     const body = await request.json();
-    
+
     const requestParser = PetSchema.safeParse(body);
 
     if (!requestParser.success) {
-        return new Response(JSON.stringify(requestParser.error.issues), { status: 400 });
+        return Response.json({
+            message: 'Erro ao validar objeto'
+        }, { status: 400 })
     }
 
     try {
@@ -17,9 +19,7 @@ export async function POST(request: Request) {
         return new Response('Erro ao conectar no mongo', { status: 500 });
     }
 
-    const Pet = mongoose.models.Pet || mongoose.model('Pet', PetMongoSchema, 'pets');
-
-    const newPet = new Pet({
+    const newPet = new mongoose.models.Pet({
         id: new mongoose.Types.ObjectId(),
         ...requestParser.data
     });

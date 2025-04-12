@@ -11,7 +11,6 @@ interface CardPetProps {
 }
 
 export default function CardPet({ name, description, tags, image }: CardPetProps) {
-
     return (
         <div className="border border-secondary rounded-2xl flex flex-col gap-2 max-w-80">
             <Image
@@ -30,11 +29,11 @@ export default function CardPet({ name, description, tags, image }: CardPetProps
                 </p>
             </div>
             <div className="flex flex-wrap gap-2 p-4">
-                {tags.map((tag) => (
-                    <Tag key={tag} value={tag} />
+                {tags.map((tag, index) => (
+                    <Tag key={index} value={tag} />
                 ))}
             </div>
-            <button className="text-background bg-primary rounded-b-2xl p-4 hover:opacity-80 cursor-pointer" onClick={() => console.log('dale')}> Adicionar ao Cesto</button>
+            <button className="text-background bg-primary rounded-b-2xl p-4 hover:opacity-80 cursor-pointer" onClick={() => {}}> Adicionar ao Cesto</button>
         </div>
     )
 }

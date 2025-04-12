@@ -1,7 +1,6 @@
 import {  z } from "zod";
 import { EGender } from "../api/enums/EGender";
 import { ESize } from "../api/enums/ESize";
-import mongoose from "mongoose";
 
 export const PetSchema = z.object({
     name: z.string(),
@@ -17,15 +16,3 @@ export const PetSchema = z.object({
 
 export type Pet = z.infer<typeof PetSchema>;
 
-export const PetMongoSchema = new mongoose.Schema({
-    id: String,
-    name: String,
-    color: String,
-    race: String,
-    photo: String,
-    gender: String,
-    size: String,
-    isAdopted: Boolean,
-    tags: [String],
-    description: String
-})
