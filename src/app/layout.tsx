@@ -3,7 +3,7 @@ import "./globals.css";
 import { Container } from "./components/container/Container";
 import HeaderMenu from "./components/root/header-menu/HeaderMenu";
 import HeaderTop from "./components/root/header-top/HeaderTop";
-
+import { CartProvider } from "./context/CartContext";
 
 export const metadata: Metadata = {
   title: "Adota Aí",
@@ -18,21 +18,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>
-        <Container>
-          <header>
-            <HeaderTop />
-            <HeaderMenu />
-          </header>
+        <CartProvider>
+          <Container>
+            <header>
+              <HeaderTop />
+              <HeaderMenu />
+            </header>
 
-        <main>
-          {children}
-        </main>
-
-        </Container>
-
+            <main>
+              {children}
+            </main>
+          </Container>
+        </CartProvider>
       </body>
     </html>
   );

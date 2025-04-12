@@ -2,15 +2,47 @@
 
 import Image from "next/image";
 import Tag from "../../shared/Tag/Tag";
+import { useCart } from "@/app/context/CartContext";
 
 interface CardPetProps {
+    id: string;
     name: string;
     description: string;
     tags: string[];
-    image: string
+    image: string;
+    size: number;
+    gender: number;
+    color: string;
+    race: string;
+    isadopted: boolean;
 }
 
-export default function CardPet({ name, description, tags, image }: CardPetProps) {
+export default function CardPet({ id: _id, name, description, tags, image, size, gender, color, race, isadopted }: CardPetProps) {
+    const { addToCart, removeFromCart, cartItems } = useCart();
+    const isInCart = cartItems.some((cartItem) => cartItem._id === _id);
+
+    const handleAddToCart = () => {
+        if (!isInCart) {
+            const pet = {
+                _id,
+                name,
+                description,
+                tags,
+                photo: image,
+                isadopted,
+                size,
+                gender,
+                color,
+                race
+            };
+            addToCart(pet);
+        }
+    };
+
+    const handleRemoveFromCart = () => {
+        removeFromCart(_id);
+    };
+
     return (
         <div className="border border-secondary rounded-2xl flex flex-col gap-2 max-w-80">
             <Image
@@ -33,7 +65,21 @@ export default function CardPet({ name, description, tags, image }: CardPetProps
                     <Tag key={index} value={tag} />
                 ))}
             </div>
-            <button className="text-background bg-primary rounded-b-2xl p-4 hover:opacity-80 cursor-pointer" onClick={() => {}}> Adicionar ao Cesto</button>
+            {isInCart ? (
+                <button 
+                    className="text-background bg-red-500 rounded-b-2xl p-4 hover:opacity-80 cursor-pointer"
+                    onClick={handleRemoveFromCart}
+                >
+                    Remover do Cesto
+                </button>
+            ) : (
+                <button 
+                    className="text-background bg-primary rounded-b-2xl p-4 hover:opacity-80 cursor-pointer"
+                    onClick={handleAddToCart}
+                >
+                    Adicionar ao Cesto
+                </button>
+            )}
         </div>
     )
 }

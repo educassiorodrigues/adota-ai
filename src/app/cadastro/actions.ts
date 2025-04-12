@@ -53,6 +53,7 @@ export async function adicionarPetAction(data: FormData) {
 
     // Create the pet object
     const petData = {
+        id: new mongoose.Types.ObjectId().toString(),
         name: formData.name,
         color: formData.color,
         description: formData.description,
