@@ -1,12 +1,14 @@
-'use server'
-
-import { listarCachorros } from "@/core/api/dogs/apiService";
+import { connectMongo } from "./api/_mongo/mongodb";
+import mongoose from "mongoose";
+import { PetMongoSchema } from "./api/_mongo/models/Pet";
 import FilterForm from "./components/Home/FilterForm/FilterForm";
 import CardList from "./components/Home/CardList/CardList";
 import { Suspense } from "react";
 
 export default async function Home() {
-  const pets = await listarCachorros(false);
+  await connectMongo();
+  const Pet = mongoose.models.Pets || mongoose.model("Pets", PetMongoSchema);
+  const pets = await Pet.find();
 
   return (
     <div className="flex flex-col gap-2 mt-4">

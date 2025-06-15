@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import "./globals.css";
+
 import { Container } from "./components/container/Container";
 import HeaderMenu from "./components/root/header-menu/HeaderMenu";
 import HeaderTop from "./components/root/header-top/HeaderTop";
 import { CartProvider } from "./context/CartContext";
+
+import "./global.css";
 
 export const metadata: Metadata = {
   title: "Adota Aí",

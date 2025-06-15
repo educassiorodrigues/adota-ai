@@ -1,21 +1,9 @@
-import mongoose, { Schema } from "mongoose";
 import { connectMongo } from "../_mongo/mongodb";
-
-// Define the schema for the pets collection
-const petSchema = new Schema({
-    name: String,
-    color: String,
-    race: String,
-    photo: String,
-    gender: Number,
-    size: Number,
-    isAdopted: Boolean,
-    tags: [String],
-    description: String,
-});
+import mongoose from "mongoose";
+import { PetMongoSchema } from "../_mongo/models/Pet";
 
 // Register the model if it doesn't already exist
-const Pet = mongoose.models.pets || mongoose.model("pets", petSchema);
+const Pet = mongoose.models.Pet || mongoose.model("Pet", PetMongoSchema);
 
 export async function GET() {
     await connectMongo();
@@ -25,10 +13,9 @@ export async function GET() {
         if(!pets){
             return new Response('Nenhum objeto encontrado', { status: 404 });
         }
-        
         return Response.json(pets, { status: 200 });
     } catch(e){
         console.error(e);
-        return new Response('Erro ao buscar objetos no banco', { status: 403 });
+        return new Response('Erro ao buscar objetos no banco', { status: 500 });
     }
 }
