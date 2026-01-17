@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description: "Adote um pet e ganhe um amigo para a vida toda!",
 };
 
+// Force the entire site to be dynamic pois há dependencias do banco mongo para gerar ssg
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({
   children,
 }: Readonly<{
